@@ -29,40 +29,43 @@ class ConferenceSiteController {
     @Value("${version:0}")
     private String version;
 
+    @GetMapping("/info")
+    public String infoWithVersion() {
+        return "Site v" + version;
+    }
 
     @GetMapping("/")
     public String index(Model model) {
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String conferenceC4PInfo = "http://demo-conference-c4p/info";
-        String conferenceAgendaInfo = "http://demo-conference-agenda.jx-staging.35.198.168.7.nip.io/info";//"http://demo-conference-agenda/info";
-        String conferenceAgendaItems = "http://demo-conference-agenda.jx-staging.35.198.168.7.nip.io";
-        String agendaString = "N/A";
-        String c4pString = "N/A";
+        String conferenceC4P = "http://demo-conference-c4p";
+        String conferenceAgenda = "http://demo-conference-agenda";
+        String agendaInfo = "N/A";
+        String c4pInfo = "N/A";
         try {
-            ResponseEntity<String> agenda = restTemplate.getForEntity(conferenceAgendaInfo, String.class);
-            agendaString = agenda.getBody();
+            ResponseEntity<String> agenda = restTemplate.getForEntity(conferenceAgenda + "/info", String.class);
+            agendaInfo = agenda.getBody();
 
         } catch (Exception e) {
         }
         try {
-            ResponseEntity<String> sponsors = restTemplate.getForEntity(conferenceC4PInfo, String.class);
-            c4pString = sponsors.getBody();
+            ResponseEntity<String> sponsors = restTemplate.getForEntity(conferenceC4P + "/info", String.class);
+            c4pInfo = sponsors.getBody();
         } catch (Exception e) {
         }
-
 
         ResponseEntity<List<AgendaItem>> agendaItems = null;
 
         try {
-            agendaItems = restTemplate.exchange(conferenceAgendaItems, HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {});
+            agendaItems = restTemplate.exchange(conferenceAgenda, HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
+            });
         } catch (Exception e) {
         }
 
         model.addAttribute("version", version);
-        model.addAttribute("agenda", agendaString);
-        model.addAttribute("c4p", c4pString);
+        model.addAttribute("agenda", agendaInfo);
+        model.addAttribute("c4p", c4pInfo);
         if (agendaItems != null) {
             model.addAttribute("agendaItems", agendaItems.getBody());
         }
