@@ -74,11 +74,11 @@
 <script src="js/plugins.js"></script>
 <script src="js/main.js"></script>
 <script type="text/javascript">
-    $(document).ready(function () {
-        setInterval(function () {
-            window.location = window.location;
-        }, 3000);
-    });
+    // $(document).ready(function () {
+    //     setInterval(function () {
+    //         window.location = window.location;
+    //     }, 3000);
+    // });
 
     function approveProposal(){
         console.log("approving");
