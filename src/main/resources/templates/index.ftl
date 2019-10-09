@@ -36,6 +36,24 @@
     <div class="block block-left">
         <div class="container">
             <h2>${c4p}</h2>
+
+            <h4>New Proposal</h4>
+
+            <label>Title</label>
+            <input id="title" type="text">
+            <label>Author</label>
+            <input id="author" type="text">
+            <label>Email</label>
+            <input id="email" type="text">
+            <label>Abstract</label>
+            <textarea id="description"></textarea>
+            <a href="#" onclick="submitProposal()">Submit</a>
+
+            <ul>
+                <li>proposal title - author - pending - <a href="#" onclick="approveProposal()">accept</a> / <a href="#" onclick="rejectProposal()">reject</a></li>
+                <li>proposal title - author - pending - <a href="#" onclick="approveProposal()">accept</a> / <a href="#" onclick="rejectProposal()">reject</a></li>
+                <li>proposal title - author - pending - <a href="#" onclick="approveProposal()">accept</a> / <a href="#" onclick="rejectProposal()">reject</a></li>
+            </ul>
         </div>
     </div>
     <div class="block block-right">
@@ -61,6 +79,30 @@
             window.location = window.location;
         }, 3000);
     });
+
+    function approveProposal(){
+        console.log("approving");
+    }
+
+    function rejectProposal(){
+        console.log("rejecting");
+
+    }
+
+    function submitProposal() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "${c4pURL}", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        var data = JSON.stringify({
+            author: document.getElementById("author").value,
+            email: document.getElementById("email").value,
+            title: document.getElementById("title").value,
+            description: document.getElementById("description").value
+        });
+        console.log(data);
+        xhr.send(data);
+        window.location = window.location;
+    }
 </script>
 
 

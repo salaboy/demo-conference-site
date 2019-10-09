@@ -40,7 +40,9 @@ class ConferenceSiteController {
         RestTemplate restTemplate = new RestTemplate();
 
         String conferenceC4P = "http://demo-conference-c4p";
+        //String conferenceC4P = "http://demo-conference-c4p.jx-staging.35.198.168.7.nip.io/";
         String conferenceAgenda = "http://demo-conference-agenda";
+        //String conferenceAgenda = "http://demo-conference-agenda.jx-staging.35.198.168.7.nip.io/";
         String agendaInfo = "N/A";
         String c4pInfo = "N/A";
         try {
@@ -65,6 +67,8 @@ class ConferenceSiteController {
 
         model.addAttribute("version", version);
         model.addAttribute("agenda", agendaInfo);
+        model.addAttribute("c4pURL", conferenceC4P);
+        model.addAttribute("agendaURL", conferenceAgenda);
         model.addAttribute("c4p", c4pInfo);
         if (agendaItems != null) {
             model.addAttribute("agendaItems", agendaItems.getBody());
