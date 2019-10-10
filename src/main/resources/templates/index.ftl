@@ -114,7 +114,7 @@
 
     }
 
-    function rejectProposal() {
+    function rejectProposal(id) {
         console.log("rejecting");
         var xhr = new XMLHttpRequest();
         xhr.open("POST", ${c4pURL}+"/" + id + "/decision", true);
