@@ -9,5 +9,5 @@ spring:
       - id: c4p
         uri: http://demo-conference-c4p/
         predicates:
-        - Path=/c4p/*
+        - Path=/c4p/**
 
