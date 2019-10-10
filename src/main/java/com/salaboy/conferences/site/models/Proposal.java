@@ -17,6 +17,9 @@ public class Proposal {
         this.status = status;
     }
 
+    public Proposal() {
+    }
+
     public String getId() {
         return id;
     }
