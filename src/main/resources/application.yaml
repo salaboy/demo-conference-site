@@ -5,9 +5,9 @@ spring:
       - id: agenda
         uri: http://demo-conference-agenda/
         predicates:
-        - Path=/agenda/
+        - Path=/agenda/*
       - id: c4p
         uri: http://demo-conference-c4p/
         predicates:
-        - Path=/c4p/
+        - Path=/c4p/*
 
