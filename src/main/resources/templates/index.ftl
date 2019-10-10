@@ -28,9 +28,11 @@
 <div class="block conference">
     <div class="container">
 
-        <h1>Less Cooler than GeeCon Conf</h1>
+        <h1>GeeCon 2030</h1>
         <h2>V${version} <img src=".png" width="7%"/></h2>
-        Auto Refresh: <a href="#" onclick="refreshOn()">On</a> / <a href="#" onclick="refreshOff()">Off</a>
+        <div class="block-options">Auto Refresh: <input onclick="refreshOn()" type="checkbox" name="refresh" value="on">
+        </div>
+
     </div>
 </div>
 <div class="bottom-blocks">
@@ -38,29 +40,55 @@
         <div class="container">
             <h2>${c4p}</h2>
 
-            <h4>New Proposal</h4>
+            <div class="block-col">
+                <h4>New Proposal</h4>
+                <div class="block-form">
+                    <div class="form-field">
+                        <label>Title</label>
+                        <input id="title" type="text">
+                    </div>
+                    <div class="form-field">
+                        <label>Author</label>
+                        <input id="author" type="text">
+                    </div>
+                    <div class="form-field">
+                        <label>Email</label>
+                        <input id="email" type="text">
+                    </div>
+                    <div class="form-field">
+                        <label>Abstract</label>
+                        <textarea id="description"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" onclick="submitProposal()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="block-col">
+                <h4>Proposal Received</h4>
+                <#if proposals??>
+                    <ul class="item-list">
 
-            <label>Title</label>
-            <input id="title" type="text">
-            <label>Author</label>
-            <input id="author" type="text">
-            <label>Email</label>
-            <input id="email" type="text">
-            <label>Abstract</label>
-            <textarea id="description"></textarea>
-            <a href="#" onclick="submitProposal()">Submit</a>
+                        <#list proposals as proposal>
+                            <li>
+                                <h5 class="item-list__title">${proposal.title}</h5>
+                                <div class="item-list__author">${proposal.description}</div>
+                                <div class="item-list__status">${proposal.status}</div>
+                                <div class="item-list__actions">
+                                    <a href="#" class="item-list__actions__accept"
+                                       onclick="approveProposal(${proposal.id})">accept</a>
+                                    <a class="item-list__actions__reject" href="#"
+                                       onclick="rejectProposal(${proposal.id})">reject</a>
+                                </div>
+                            </li>
+                        </#list>
 
-            <h4>Proposal Received</h4>
+                    </ul>
+                <#else>
+                    <h5> No Proposals yet.</h5>
+                </#if>
 
-            <ul>
-                <#list proposals as proposal>
-                    <li>${proposal.title} - ${proposal.description} - ${proposal.status} -> <a href="#"
-                                                                                               onclick="approveProposal(${proposal.id})">accept</a>
-                        / <a
-                                href="#" onclick="rejectProposal(${proposal.id})">reject</a></li>
-                </#list>
-
-            </ul>
+            </div>
         </div>
     </div>
     <div class="block block-right">
@@ -68,13 +96,19 @@
             <h2>${agenda}</h2>
 
             <h4>Accepted Talks</h4>
-
-            <ul>
-                <#list agendaItems as item>
-                    <li>${item.author} -> ${item.title} @ ${item.talkTime?string('dd.MM.yyyy HH:mm:ss')}</li>
-                </#list>
-            </ul>
-
+            <#if agendaItems??>
+                <ul class="item-list">
+                    <#list agendaItems as item>
+                        <li>
+                            <h5 class="item-list__title">${item.title}</h5>
+                            <div class="item-list__author">By ${item.author}
+                                @ ${item.talkTime?string('dd.MM.yyyy HH:mm:ss')} </div>
+                        </li>
+                    </#list>
+                </ul>
+            <#else>
+                <h5> No Items yet.</h5>
+            </#if>
         </div>
     </div>
 </div>
@@ -104,7 +138,7 @@
     function approveProposal(id) {
         console.log("approving");
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "${c4pURL}" + "/" + id + "/decision", true);
+        xhr.open("POST", "/c4p/" + id + "/decision", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
             "approved": true,
@@ -119,7 +153,7 @@
     function rejectProposal(id) {
         console.log("rejecting");
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "${c4pURL}" + "/" + id + "/decision", true);
+        xhr.open("POST", "/c4p/" + id + "/decision", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
             "approved": false,
@@ -133,7 +167,7 @@
 
     function submitProposal() {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "${c4pURL}", true);
+        xhr.open("POST", "/c4p/", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
             author: document.getElementById("author").value,
