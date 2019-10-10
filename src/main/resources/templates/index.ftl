@@ -30,6 +30,7 @@
 
         <h1>Less Cooler than GeeCon Conf</h1>
         <h2>V${version} <img src=".png" width="7%"/></h2>
+        Auto Refresh: <a href="#" onclick="refreshOn()">On</a> / <a href="#" onclick="refreshOff()">Off</a>
     </div>
 </div>
 <div class="bottom-blocks">
@@ -49,6 +50,8 @@
             <textarea id="description"></textarea>
             <a href="#" onclick="submitProposal()">Submit</a>
 
+            <h4>Proposal Received</h4>
+
             <ul>
                 <li>proposal title - author - pending - <a href="#" onclick="approveProposal()">accept</a> / <a href="#" onclick="rejectProposal()">reject</a></li>
                 <li>proposal title - author - pending - <a href="#" onclick="approveProposal()">accept</a> / <a href="#" onclick="rejectProposal()">reject</a></li>
@@ -59,6 +62,8 @@
     <div class="block block-right">
         <div class="container">
             <h2>${agenda}</h2>
+
+            <h4>Accepted Talks</h4>
             <#list agendaItems as item>
                 <ul>
                     <li>${item.author} -> ${item.title} @ ${item.talkTime?string('dd.MM.yyyy HH:mm:ss')}</li>
@@ -79,6 +84,16 @@
     //         window.location = window.location;
     //     }, 3000);
     // });
+
+    function refreshOn(){
+        // setInterval(function () {
+        //     window.location = window.location;
+        // }, 3000);
+    }
+
+    function refreshOff(){
+        
+    }
 
     function approveProposal(){
         console.log("approving");
