@@ -145,27 +145,27 @@
         });
         console.log(data);
         xhr.send(data);
-        window.location.href="/";
+        //window.location.href="/";
 
     }
 
     function rejectProposal(id) {
         console.log("rejecting");
         var xhr = new XMLHttpRequest();
-        xhr.open("PATCH", "/c4p/" + id + "/decision", true);
+        xhr.open("PUT", "/c4p/" + id + "/decision", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
             "approved": false
         });
         console.log(data);
         xhr.send(data);
-        window.location.href="/";
+        //window.location.href="/";
 
     }
 
     function submitProposal() {
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "/c4p/", true);
+        xhr.open("PUT", "/c4p/", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
             author: document.getElementById("author").value,
@@ -175,7 +175,7 @@
         });
         console.log(data);
         xhr.send(data);
-        window.location.href="/";
+       // window.location.href="/";
     }
 </script>
 
