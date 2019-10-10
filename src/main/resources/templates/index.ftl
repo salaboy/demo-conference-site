@@ -141,7 +141,7 @@
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
             "approved": true,
-            "dayTime": new Date()
+            "dayTime": "monday-morning"
         });
         console.log(data);
         xhr.send(data);
@@ -155,8 +155,7 @@
         xhr.open("POST", "/c4p/" + id + "/decision", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
-            "approved": false,
-            "dayTime": new Date()
+            "approved": false
         });
         console.log(data);
         xhr.send(data);
