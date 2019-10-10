@@ -137,7 +137,7 @@
     function approveProposal(id) {
         console.log("approving");
         var xhr = new XMLHttpRequest();
-        xhr.open("PATCH", "/c4p/" + id + "/decision", true);
+        xhr.open("PUT", "/c4p/" + id + "/decision", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
             "approved": true,
@@ -165,7 +165,7 @@
 
     function submitProposal() {
         var xhr = new XMLHttpRequest();
-        xhr.open("PUT", "/c4p/", true);
+        xhr.open("POST", "/c4p/", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
             author: document.getElementById("author").value,
