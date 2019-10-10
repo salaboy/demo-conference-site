@@ -1,6 +1,7 @@
 package com.salaboy.conferences.site;
 
 import com.salaboy.conferences.site.models.AgendaItem;
+import com.salaboy.conferences.site.models.Proposal;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -65,13 +66,26 @@ class ConferenceSiteController {
         } catch (Exception e) {
         }
 
+        ResponseEntity<List<Proposal>> proposals = null;
+
+        try {
+            proposals = restTemplate.exchange(conferenceC4P, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
+            });
+        } catch (Exception e) {
+        }
+
         model.addAttribute("version", version);
         model.addAttribute("agenda", agendaInfo);
         model.addAttribute("c4pURL", conferenceC4P);
         model.addAttribute("agendaURL", conferenceAgenda);
         model.addAttribute("c4p", c4pInfo);
+
         if (agendaItems != null) {
             model.addAttribute("agendaItems", agendaItems.getBody());
+        }
+
+        if (proposals != null) {
+            model.addAttribute("proposals", proposals.getBody());
         }
         return "index";
     }

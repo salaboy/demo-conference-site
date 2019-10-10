@@ -53,9 +53,11 @@
             <h4>Proposal Received</h4>
 
             <ul>
-                <li>proposal title - author - pending - <a href="#" onclick="approveProposal()">accept</a> / <a href="#" onclick="rejectProposal()">reject</a></li>
-                <li>proposal title - author - pending - <a href="#" onclick="approveProposal()">accept</a> / <a href="#" onclick="rejectProposal()">reject</a></li>
-                <li>proposal title - author - pending - <a href="#" onclick="approveProposal()">accept</a> / <a href="#" onclick="rejectProposal()">reject</a></li>
+                <#list proposals as proposal>
+                <li>${proposal.title} - ${proposal.description} - ${proposal.status} -> <a href="#" onclick="approveProposal(${proposal.id})">accept</a> / <a
+                            href="#" onclick="rejectProposal(${proposal.id})">reject</a></li>
+                </#list>
+
             </ul>
         </div>
     </div>
@@ -64,11 +66,13 @@
             <h2>${agenda}</h2>
 
             <h4>Accepted Talks</h4>
-            <#list agendaItems as item>
+
                 <ul>
+                    <#list agendaItems as item>
                     <li>${item.author} -> ${item.title} @ ${item.talkTime?string('dd.MM.yyyy HH:mm:ss')}</li>
+                    </#list>
                 </ul>
-            </#list>
+
         </div>
     </div>
 </div>
@@ -85,22 +89,43 @@
     //     }, 3000);
     // });
 
-    function refreshOn(){
+    function refreshOn() {
         // setInterval(function () {
         //     window.location = window.location;
         // }, 3000);
     }
 
-    function refreshOff(){
-        
+    function refreshOff() {
+
     }
 
-    function approveProposal(){
+    function approveProposal(id) {
         console.log("approving");
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", ${c4pURL}+"/" + id + "/decision", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        var data = JSON.stringify({
+            "approved" : true,
+            "dayTime": new Date()
+        });
+        console.log(data);
+        xhr.send(data);
+        window.location = window.location;
+
     }
 
-    function rejectProposal(){
+    function rejectProposal() {
         console.log("rejecting");
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", ${c4pURL}+"/" + id + "/decision", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        var data = JSON.stringify({
+            "approved" : false,
+            "dayTime": new Date()
+        });
+        console.log(data);
+        xhr.send(data);
+        window.location = window.location;
 
     }
 
