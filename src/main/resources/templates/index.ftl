@@ -71,9 +71,9 @@
 
                         <#list proposals as proposal>
                             <li>
-                                <h5 class="item-list__title">${proposal.title}</h5>
-                                <div class="item-list__author">${proposal.description}</div>
-                                <div class="item-list__status">${proposal.status}</div>
+                                <h5 class="item-list__title"><#if proposal.title??>${proposal.title}<#else> N/A</#if></h5>
+                                <div class="item-list__author"><#if proposal.description??>${proposal.description}<#else> N/A</#if></div>
+                                <div class="item-list__status"><#if proposal.status??>${proposal.status}<#else> N/A</#if></div>
                                 <div class="item-list__actions">
                                     <a href="#" class="item-list__actions__accept"
                                        onclick="approveProposal('${proposal.id}')">accept</a>
