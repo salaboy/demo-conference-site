@@ -52,11 +52,13 @@ class ConferenceSiteController {
             agendaInfo = agenda.getBody();
 
         } catch (Exception e) {
+            e.printStackTrace();
         }
         try {
             ResponseEntity<String> sponsors = restTemplate.getForEntity(conferenceC4P + "/info", String.class);
             c4pInfo = sponsors.getBody();
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         ResponseEntity<List<AgendaItem>> agendaItems = null;
@@ -65,6 +67,7 @@ class ConferenceSiteController {
             agendaItems = restTemplate.exchange(conferenceAgenda, HttpMethod.GET, null, new ParameterizedTypeReference<List<AgendaItem>>() {
             });
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         ResponseEntity<List<Proposal>> proposals = null;
@@ -73,6 +76,7 @@ class ConferenceSiteController {
             proposals = restTemplate.exchange(conferenceC4P, HttpMethod.GET, null, new ParameterizedTypeReference<List<Proposal>>() {
             });
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
         model.addAttribute("version", version);
