@@ -76,7 +76,7 @@
                                 <div class="item-list__status">${proposal.status}</div>
                                 <div class="item-list__actions">
                                     <a href="#" class="item-list__actions__accept"
-                                       onclick="approveProposal('${proposal.id}'')">accept</a>
+                                       onclick="approveProposal('${proposal.id}')">accept</a>
                                     <a class="item-list__actions__reject" href="#"
                                        onclick="rejectProposal('${proposal.id}')">reject</a>
                                 </div>
