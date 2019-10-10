@@ -145,7 +145,7 @@
         });
         console.log(data);
         xhr.send(data);
-        location.reload();
+        window.location.href="/";
 
     }
 
@@ -160,7 +160,7 @@
         });
         console.log(data);
         xhr.send(data);
-        location.reload();
+        window.location.href="/";
 
     }
 
@@ -176,7 +176,7 @@
         });
         console.log(data);
         xhr.send(data);
-        location.reload();
+        window.location.href="/";
     }
 </script>
 
