@@ -54,8 +54,10 @@
 
             <ul>
                 <#list proposals as proposal>
-                <li>${proposal.title} - ${proposal.description} - ${proposal.status} -> <a href="#" onclick="approveProposal(${proposal.id})">accept</a> / <a
-                            href="#" onclick="rejectProposal(${proposal.id})">reject</a></li>
+                    <li>${proposal.title} - ${proposal.description} - ${proposal.status} -> <a href="#"
+                                                                                               onclick="approveProposal(${proposal.id})">accept</a>
+                        / <a
+                                href="#" onclick="rejectProposal(${proposal.id})">reject</a></li>
                 </#list>
 
             </ul>
@@ -67,11 +69,11 @@
 
             <h4>Accepted Talks</h4>
 
-                <ul>
-                    <#list agendaItems as item>
+            <ul>
+                <#list agendaItems as item>
                     <li>${item.author} -> ${item.title} @ ${item.talkTime?string('dd.MM.yyyy HH:mm:ss')}</li>
-                    </#list>
-                </ul>
+                </#list>
+            </ul>
 
         </div>
     </div>
@@ -102,10 +104,10 @@
     function approveProposal(id) {
         console.log("approving");
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", ${c4pURL}+"/" + id + "/decision", true);
+        xhr.open("POST", "${c4pURL}" + "/" + id + "/decision", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
-            "approved" : true,
+            "approved": true,
             "dayTime": new Date()
         });
         console.log(data);
@@ -117,10 +119,10 @@
     function rejectProposal(id) {
         console.log("rejecting");
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", ${c4pURL}+"/" + id + "/decision", true);
+        xhr.open("POST", "${c4pURL}" + "/" + id + "/decision", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         var data = JSON.stringify({
-            "approved" : false,
+            "approved": false,
             "dayTime": new Date()
         });
         console.log(data);
