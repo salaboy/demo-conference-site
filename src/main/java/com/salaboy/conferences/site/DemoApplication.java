@@ -41,10 +41,8 @@ class ConferenceSiteController {
 
         RestTemplate restTemplate = new RestTemplate();
 
-       // String conferenceC4P = "http://demo-conference-c4p";
-        String conferenceC4P = "http://demo-conference-c4p.jx-staging.35.198.168.7.nip.io/";
-        //String conferenceAgenda = "http://demo-conference-agenda";
-        String conferenceAgenda = "http://demo-conference-agenda.jx-staging.35.198.168.7.nip.io/";
+        String conferenceC4P = "http://demo-conference-c4p";
+        String conferenceAgenda = "http://demo-conference-agenda";
         String agendaInfo = "N/A";
         String c4pInfo = "N/A";
         try {
