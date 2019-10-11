@@ -82,7 +82,7 @@
                                        onclick="rejectProposal('${proposal.id}')">reject</a>
                                 </div>
                                 <#else>
-                                    <div class="item-list__status">APPROVED: ${proposal.approved}</div>
+                                    <div class="item-list__status">APPROVED: ${proposal.approved?string('yes', 'no') }</div>
                                 </#if>
                             </li>
                         </#list>
