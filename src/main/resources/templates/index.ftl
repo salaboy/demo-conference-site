@@ -74,12 +74,16 @@
                                 <h5 class="item-list__title"><#if proposal.title??>${proposal.title}<#else> N/A</#if></h5>
                                 <div class="item-list__author"><#if proposal.description??>${proposal.description}<#else> N/A</#if></div>
                                 <div class="item-list__status"><#if proposal.status??>${proposal.status}<#else> N/A</#if></div>
+                                <#if proposal.status?? && proposal.status == "PENDING">
                                 <div class="item-list__actions">
                                     <a href="#" class="item-list__actions__accept"
                                        onclick="approveProposal('${proposal.id}')">accept</a>
                                     <a class="item-list__actions__reject" href="#"
                                        onclick="rejectProposal('${proposal.id}')">reject</a>
                                 </div>
+                                <#else>
+                                    <div class="item-list__status">APPROVED: ${proposal.approved}</div>
+                                </#if>
                             </li>
                         </#list>
 
@@ -145,7 +149,7 @@
         });
         console.log(data);
         xhr.send(data);
-        //window.location.href="/";
+        window.location.href="/";
 
     }
 
@@ -159,7 +163,7 @@
         });
         console.log(data);
         xhr.send(data);
-        //window.location.href="/";
+        window.location.href="/";
 
     }
 
@@ -175,7 +179,7 @@
         });
         console.log(data);
         xhr.send(data);
-       // window.location.href="/";
+        window.location.href="/";
     }
 </script>
 
