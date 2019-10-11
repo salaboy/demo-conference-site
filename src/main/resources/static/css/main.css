@@ -131,7 +131,61 @@ h2 {
   opacity: .5;
   font-size: 12px;
   text-transform: uppercase;
+  text-align: right;
+
 }
+.item-list__status__approved {
+
+  color: #12B981;
+  position: relative;
+  font-weight: bold;
+  display: block;
+}
+.item-list__status__approved:before {
+  content: "";
+  border-bottom: 2px solid #12B981;
+  border-left: 2px solid #12B981;
+  left: -20px;
+  top: 3px;
+  height: 4px;
+  width: 10px;
+  display: inline-block;
+  transform: rotate(-45deg);
+  position: absolute;
+}
+
+.item-list__status__declined {
+
+  color: #D84A4A;
+  position: relative;
+  font-weight: bold;
+  display: block;
+}
+.item-list__status__declined:before {
+  content: "";
+  border-bottom: 2px solid #D84A4A;
+  border-left: 2px solid #D84A4A;
+  left: -20px;
+  top: 7px;
+  height: 0px;
+  width: 8px;
+  display: inline-block;
+  transform: rotate(-45deg);
+  position: absolute;
+}
+.item-list__status__declined:after {
+  content: "";
+  border-bottom: 2px solid #D84A4A;
+  border-left: 2px solid #D84A4A;
+  left: -20px;
+  top: 7px;
+  height: 0px;
+  width: 8px;
+  display: inline-block;
+  transform: rotate(45deg);
+  position: absolute;
+}
+
 
 .item-list > li > .item-list__actions {
   text-align: right;

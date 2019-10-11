@@ -75,14 +75,18 @@
                                 <div class="item-list__author"><#if proposal.description??>${proposal.description}<#else> N/A</#if></div>
                                 <div class="item-list__status"><#if proposal.status??>${proposal.status}<#else> N/A</#if></div>
                                 <#if proposal.status?? && proposal.status == "PENDING">
-                                <div class="item-list__actions">
-                                    <a href="#" class="item-list__actions__accept"
-                                       onclick="approveProposal('${proposal.id}')">accept</a>
-                                    <a class="item-list__actions__reject" href="#"
-                                       onclick="rejectProposal('${proposal.id}')">reject</a>
-                                </div>
+                                    <div class="item-list__actions">
+                                        <a href="#" class="item-list__actions__accept"
+                                           onclick="approveProposal('${proposal.id}')">accept</a>
+                                        <a class="item-list__actions__reject" href="#"
+                                           onclick="rejectProposal('${proposal.id}')">reject</a>
+                                    </div>
                                 <#else>
-                                    <div class="item-list__status">APPROVED: ${proposal.approved?string('yes', 'no') }</div>
+                                    <#if proposal.approved>
+                                        <div class="item-list__status__approved">APPROVED</div>
+                                    <#else>
+                                        <div class="item-list__status__declined">DECLINED</div>
+                                    </#if>
                                 </#if>
                             </li>
                         </#list>
@@ -149,7 +153,7 @@
         });
         console.log(data);
         xhr.send(data);
-        window.location.href="/";
+        window.location.href = "/";
 
     }
 
@@ -163,7 +167,7 @@
         });
         console.log(data);
         xhr.send(data);
-        window.location.href="/";
+        window.location.href = "/";
 
     }
 
@@ -179,7 +183,7 @@
         });
         console.log(data);
         xhr.send(data);
-        window.location.href="/";
+        window.location.href = "/";
     }
 </script>
 
