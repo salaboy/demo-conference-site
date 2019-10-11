@@ -29,7 +29,7 @@
     <div class="container">
 
         <h1>GeeCon 2030</h1>
-        <h2>V${version} <img src=".png" width="7%"/></h2>
+        <h2>V${version} <img src="geecon-logo.png" width="7%"/></h2>
         <div class="block-options">Auto Refresh: <input onclick="refreshOn()" type="checkbox" name="refresh" value="on">
         </div>
 
@@ -77,15 +77,19 @@
                                 <#if proposal.status?? && proposal.status == "PENDING">
                                     <div class="item-list__actions">
                                         <a href="#" class="item-list__actions__accept"
-                                           onclick="approveProposal('${proposal.id}')">accept</a>
+                                           onclick="approveProposal('${proposal.id}')">Accept</a>
                                         <a class="item-list__actions__reject" href="#"
-                                           onclick="rejectProposal('${proposal.id}')">reject</a>
+                                           onclick="rejectProposal('${proposal.id}')">Reject</a>
                                     </div>
                                 <#else>
                                     <#if proposal.approved>
-                                        <div class="item-list__status__approved">APPROVED</div>
+                                        <div class="item-list__status__">
+                                            <span class="item-list__status__approved">ACCEPTED</span>
+                                        </div>
                                     <#else>
-                                        <div class="item-list__status__declined">DECLINED</div>
+                                        <div class="item-list__status__">
+                                            <span class="item-list__status__declined">REJECTED</span>
+                                        </div>
                                     </#if>
                                 </#if>
                             </li>
