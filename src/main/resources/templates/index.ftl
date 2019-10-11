@@ -73,7 +73,15 @@
                             <li>
                                 <h5 class="item-list__title"><#if proposal.title??>${proposal.title}<#else> N/A</#if></h5>
                                 <div class="item-list__author"><#if proposal.description??>${proposal.description}<#else> N/A</#if></div>
-                                <div class="item-list__status"><#if proposal.status??>${proposal.status}<#else> N/A</#if></div>
+                                <div class="item-list__status"><#if proposal.status??>${proposal.status}<#else> N/A</#if>
+                                    <#if proposal.status?? && proposal.status == "DECIDED">
+                                        <#if proposal.approved>
+                                            <span class="item-list__status__approved">ACCEPTED</span>
+                                        <#else>
+                                            <span class="item-list__status__declined">REJECTED</span>
+                                        </#if>
+                                    </#if>
+                                </div>
                                 <#if proposal.status?? && proposal.status == "PENDING">
                                     <div class="item-list__actions">
                                         <a href="#" class="item-list__actions__accept"
@@ -82,15 +90,7 @@
                                            onclick="rejectProposal('${proposal.id}')">Reject</a>
                                     </div>
                                 <#else>
-                                    <#if proposal.approved>
-                                        <div class="item-list__status__">
-                                            <span class="item-list__status__approved">ACCEPTED</span>
-                                        </div>
-                                    <#else>
-                                        <div class="item-list__status__">
-                                            <span class="item-list__status__declined">REJECTED</span>
-                                        </div>
-                                    </#if>
+
                                 </#if>
                             </li>
                         </#list>
