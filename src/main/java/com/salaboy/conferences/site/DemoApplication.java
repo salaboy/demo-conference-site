@@ -23,7 +23,6 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-
 }
 
 @Controller
@@ -43,8 +42,10 @@ class ConferenceSiteController {
 
         String conferenceC4P = "http://demo-conference-c4p";
         String conferenceAgenda = "http://demo-conference-agenda";
+        String conferenceEmail = "http://demo-conference-email";
         String agendaInfo = "N/A";
         String c4pInfo = "N/A";
+        String emailInfo = "N/A";
         try {
             ResponseEntity<String> agenda = restTemplate.getForEntity(conferenceAgenda + "/info", String.class);
             agendaInfo = agenda.getBody();
@@ -55,6 +56,12 @@ class ConferenceSiteController {
         try {
             ResponseEntity<String> sponsors = restTemplate.getForEntity(conferenceC4P + "/info", String.class);
             c4pInfo = sponsors.getBody();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            ResponseEntity<String> email = restTemplate.getForEntity(conferenceEmail + "/info", String.class);
+            emailInfo = email.getBody();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -82,6 +89,7 @@ class ConferenceSiteController {
         model.addAttribute("c4pURL", conferenceC4P);
         model.addAttribute("agendaURL", conferenceAgenda);
         model.addAttribute("c4p", c4pInfo);
+        model.addAttribute("email", emailInfo);
 
         if (agendaItems != null) {
             model.addAttribute("agendaItems", agendaItems.getBody());
