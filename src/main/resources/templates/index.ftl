@@ -43,7 +43,7 @@
             <h2>${c4p}</h2>
 
             <div class="block-col">
-                <h4>New Proposal</h4>
+                <h4>New Proposal (Public)</h4>
                 <div class="block-form">
                     <div class="form-field">
                         <label>Title</label>
@@ -67,8 +67,8 @@
                 </div>
             </div>
             <div class="block-col">
-                <h4>Proposal Received</h4>
-                <#if proposals??>
+                <h4>Proposal Received (Back Office)</h4>
+                <#if proposals?? && proposals?has_content>
                     <ul class="item-list">
 
                         <#list proposals as proposal>
@@ -109,7 +109,7 @@
         <div class="container">
             <h2>${agenda}</h2>
 
-            <h4>Accepted Talks</h4>
+            <h4>Accepted Talks (Public)</h4>
             <#if agendaItems??>
                 <ul class="item-list">
                     <#list agendaItems as item>
