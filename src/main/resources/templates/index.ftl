@@ -28,8 +28,8 @@
 <div class="block conference">
     <div class="container">
 
-        <h1>GeeCon 2030</h1>
-        <h2>V${version} <img src="geecon-logo.png" width="7%"/></h2>
+        <h1>SouJava Conf</h1>
+        <h2>V${version} <img src="soujava.png" width="7%"/></h2>
         <div class="block-options">Auto Refresh: <input onclick="refreshOn()" type="checkbox" name="refresh" value="on">
             <br/>
             ${email}
